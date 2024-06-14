@@ -1,0 +1,43 @@
+<!doctype html><html lang=fr-fr><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="I&rsquo;m Alive Hi there, it&rsquo;s me again, your fave walking disaster, Stella. It&rsquo;s sure been a while.
+Since my last post roughly 9 months ago, I&rsquo;ve been offered a postdoc in Israel (which I reluctantly accepted due to a lack of alternative options), cancelled said postdoc weeks before departure (due to the still-very-much-ongoing genocide in Gaza), ended up homeless in the process (still an open problem) as well as unemployed (this one has been kinda solved recently, for a while at least), started outing myself as autistic at work, went through another deep depressive episode during the winter (to the point of worrying my therapist), became a baby mod on a beloved Discord server and am now in the process of starting HRT (at-long-fucking-last, some will say)."><title>Back From the Dead - A GitHub Story
+</title><link rel="shortcut icon" type=image/x-icon href=/><link rel=stylesheet href=/css/main.244c224f190f84de3e1de48526f9a6f7c62940d31a7a2a0b61c275b9760d4e38239803ab786453e3406bc2b635583793107c8ec24c4ceb64773e6905f6c074d6.css integrity="sha512-JEwiTxkPhN4+HeSFJvmm98YpQNMaeioLYcJ1uXYNTjgjmAOreGRT40BrwrY1WDeTEHyOwkxM62R3PmkF9sB01g=="></head><body a=light><main class=page-content aria-label=Content><div class=w><a href=/>Home</a><article><p class=post-meta><time datetime="2024-06-14 00:00:00 +0000 UTC">2024-06-14</time></p><p class=post-meta><a href=https://stella-hoshineko.github.io/tags/perso>Perso</a>
+<a href=https://stella-hoshineko.github.io/tags/informatique>Informatique</a></p><h1>Back From the Dead - A GitHub Story</h1><h2 id=im-alive>I&rsquo;m Alive</h2><p>Hi there, it&rsquo;s me again, your fave walking disaster, <em>Stella</em>. It&rsquo;s sure been a while.</p><p>Since my last post roughly 9 months ago, I&rsquo;ve been offered a postdoc in Israel (which I reluctantly accepted due to a lack of alternative options), cancelled said postdoc weeks before departure (due to the <strong>still-very-much-ongoing</strong> genocide in Gaza), ended up homeless in the process (still an open problem) as well as unemployed (this one has been <em>kinda</em> solved recently, for a while at least), started outing myself as autistic at work, went through another deep depressive episode during the winter (to the point of worrying my therapist), became a baby mod on a beloved Discord server and am now in the process of starting HRT (at-long-fucking-last, some will say).</p><p>Also, France likes fascists so much Macron dissolved the parliament, and in a matter of weeks the next elections will decide whether we finally reach an enlightened new age of socialism with Comrade Poutou or just end up with Twink Hitler as prime minister (his poop leaked on his shoes in Tolbiac&rsquo;s Amphitheatre N).</p><p>Anyway, very understandably, I&rsquo;ve been forced to shutdown my small next writing project last year, and mostly unable to create anything worth posting since. Still, I wanted to give some news, for my own satisfaction if only this.</p><h2 id=its-alive>It&rsquo;s Alive</h2><p>Another big obstruction preventing me from posting was that
+my previous writing setup was entirely dependent on me
+using scripts setup on my Windows desktop PC.
+The whole situation was frustrating for many reasons,
+so I spent some time setting up a more practical solution.</p><p>With the current framework, I&rsquo;m using <em>two</em> repositories.
+The public one is a github pages repo that hosts the generated static website (as before), now associated to a public key.
+The (not necessarily) private one contains all the source files Hugo needs to generate the website, a secret private key, and the following yml workflow:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=display:flex><span><span style=color:#f92672>name</span>: <span style=color:#ae81ff>Github Pages</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>on</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>push</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>branches</span>:
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>master</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>pull_request</span>:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>jobs</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>deploy</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>runs-on</span>: <span style=color:#ae81ff>ubuntu-20.04</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>steps</span>:
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>actions/checkout@v2</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>with</span>:
+</span></span><span style=display:flex><span>          <span style=color:#f92672>submodules</span>: <span style=color:#66d9ef>true</span>  <span style=color:#75715e># Fetch Hugo themes (true OR recursive)</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>fetch-depth</span>: <span style=color:#ae81ff>0</span>    <span style=color:#75715e># Fetch all history for .GitInfo and .Lastmod</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Setup Hugo</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>peaceiris/actions-hugo@v2</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>with</span>:
+</span></span><span style=display:flex><span>          <span style=color:#f92672>hugo-version</span>: <span style=color:#e6db74>&#39;latest&#39;</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>extended</span>: <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Build</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>run</span>: <span style=color:#ae81ff>hugo --minify</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Deploy</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>peaceiris/actions-gh-pages@v3</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>with</span>:
+</span></span><span style=display:flex><span>          <span style=color:#f92672>deploy_key</span>: <span style=color:#ae81ff>${{ secrets.PRIVATE_KEY }}</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>external_repository</span>: <span style=color:#ae81ff>Stella-Hoshineko/stella-hoshineko.github.io</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>publish_dir</span>: <span style=color:#ae81ff>./public</span>
+</span></span></code></pre></div><p>This solution now allows me to write posts with VSCode, from any web browser!</p><p>=^.^=</p><p>Anyway, I do <em>wish</em> to write more often, about whatever, and at the very least I now <em>can</em> do it easily.
+Trying to journal like this may at the very least help me process <em>life</em>, because <em>it just keeps happening</em>.</p><p>xoxo</p></article></div></main></body></html>
